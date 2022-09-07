@@ -1,23 +1,36 @@
 import React, { useState } from 'react';
-import {
-  AiOutlineInstagram,
-  AiOutlineFacebook,
-  AiOutlineYoutube,
-  AiOutlineClose,
-} from 'react-icons/ai';
+import { AiOutlineInstagram, AiOutlineYoutube } from 'react-icons/ai';
 import { FaTelegramPlane } from 'react-icons/fa';
-import { GiHamburgerMenu } from 'react-icons/gi';
 import { BsFillTelephoneForwardFill } from 'react-icons/bs';
 import { HiMenuAlt4, HiX } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 import './header.styles.css';
 
 const menu = [
-  'Home',
-  'Current affairs',
-  'Archive',
-  'Featured',
-  'Broadcast',
-  'Category',
+  {
+    title: 'Home',
+    link: '/',
+  },
+  {
+    title: 'Current affairs',
+    link: '/current',
+  },
+  {
+    title: 'Archive',
+    link: '/archive',
+  },
+  {
+    title: 'Featured',
+    link: '/featured',
+  },
+  {
+    title: 'Broadcast',
+    link: '/broadcast',
+  },
+  {
+    title: 'Current affairs',
+    link: '/category',
+  },
 ];
 
 const Header = () => {
@@ -32,7 +45,7 @@ const Header = () => {
 
         <ul className="nav-desktop">
           {menu.map((item) => {
-            return <li>{item}</li>;
+            return <Link to={item.link}><li>{item.title}</li></Link>;
           })}
         </ul>
 
@@ -54,9 +67,9 @@ const Header = () => {
               <ul>
                 {menu.map((item) => (
                   <li key={item}>
-                    <a href={`#${item}`} onClick={() => setToggle(false)}>
-                      {item}
-                    </a>
+                    <Link to={`${item.link}`} onClick={() => setToggle(false)}>
+                      {item.title}
+                    </Link>
                   </li>
                 ))}
                 <div className="icons-menu">
@@ -64,7 +77,7 @@ const Header = () => {
                   <BsFillTelephoneForwardFill size={20} />
                   <AiOutlineInstagram size={20} />
                   <AiOutlineYoutube size={20} />
-              </div>
+                </div>
               </ul>
             </div>
           )}
